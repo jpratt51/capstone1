@@ -1,0 +1,29 @@
+{% extends 'base.html'  %}
+{% block title %}Send Verification Code{% endblock %}
+{% block content %}
+
+<h1 class="display-1">Verify Email</h1>
+<p class="lead">Enter your email address below and submit.</p>
+<p>Check your inbox for an email with the subject "Myreads email verification".</p>
+<p>Copy the six digit code for use in the verification form.</p>
+
+<form method="POST">
+
+  {{ form.hidden_tag() }}
+
+  {% for field in form
+    if field.widget.input_type != 'hidden' %}
+  <p>
+    {{ field.label }}
+    {{ field(class_="form-control") }}
+
+    {% for error in field.errors %}
+    <span class="form-text text-danger">{{ error }}</span>
+    {% endfor %}
+  </p>
+  {% endfor %}
+
+  <button class="btn btn-success" type="submit">Send Code</button>
+
+</form>
+{% endblock %}

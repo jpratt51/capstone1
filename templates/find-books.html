@@ -1,0 +1,32 @@
+{% extends 'base.html'  %}
+{% block title %}findbooks.{% endblock %}
+{% block content %}
+
+<h1 class="display-1">findbooks.</h1>
+<p class="lead">Find books you've read or your next great read here.</p>
+<p>Search for books by author or title (or both)</p>
+<form method="POST">
+
+    {{ form.hidden_tag() }}
+  
+    {% for field in form
+      if field.widget.input_type != 'hidden' %}
+    <p>
+      {{ field.label }}
+      {{ field(class_="form-control") }}
+  
+      {% for error in field.errors %}
+      <span class="form-text text-danger">{{ error }}</span>
+      {% endfor %}
+    </p>
+    {% endfor %}
+  
+    <button class="btn btn-success" type="submit">Search</button>
+  
+  </form>
+  {% block find_books %}
+  {% endblock %}
+
+  <p id="test"></p>
+
+{% endblock %}

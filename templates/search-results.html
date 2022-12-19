@@ -1,0 +1,10 @@
+{% extends 'find-books.html' %}
+{% block find_books %}
+    {% for book in books %}
+    <form method="POST" action="/add-book/{{book}}">
+        <p>{{book['title']}} by {{book['author_name']}}</p>
+        <p>Publish date: {{book['first_publish_year']}} | Page count: {{book['number_of_pages_median']}} | Subject: {{book['subject']}}</p>
+        <button>Select Book</button>
+    </form>
+    {% endfor %}
+{% endblock %}
